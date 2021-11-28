@@ -19,6 +19,22 @@ Utilizando a aula "Criando fluxo no Kafka - Hands-On" como referência, implemen
 
 Bom trabalho!
 
+## Solução
+
+Criei 2 serviços, um para adicionar tweets na fila do Kafka e outro para consumir a fila do kafka e gerar o relatório de análise dos tweets.
+#### jogo-producer
+Possui um _endpoint_ que envia tweets para um tópico no kafka.
+<br>
+Detalhes da configuração do kafka no arquivo [kafka.js](jogo-producer-api/src/config/kafka.js)
+
+#### jogo-consumer
+Se conecta na fila do kafka e adiciona os tweets em um array na memória. A cada stop/start do container, se conecta na fila com grupoId diferente para garantir que pegará todos os tweets desde o início.
+<br>
+Possui um _endpoint_ para gerar o relatório de análise com base nas palavras positivas e negativas definidas no [docker-compose.yaml](docker-compose.yaml). 
+Possui um _endpoint_ que lista todos os tweets enviados.
+<br>
+Detalhes da configuração do kafka no arquivo [kafka.js](jogo-consumer-api/src/config/kafka.js)
+
 ## Start
 `docker compose up -d`
 
@@ -27,3 +43,14 @@ Bom trabalho!
 
 ## Obter análise dos tweets
 ![Imagem getAnaliseTweets.png não encontrada](/imagens/getAnaliseTweets.png)
+
+## Listar todos os tweets
+![Imagem getTweets.png não encontrada](/imagens/getTweets.png)
+
+## Configurar lista de palavras positivas e negativas
+Se quiser configurar a lista de palavras positivas e negativas edite as variáveis de ambiente no arquivo [docker-compose.yaml](docker-compose.yaml):
+```
+  PALAVRAS_POSITIVAS: '["bom", "legal", "ótimo", "massa"]'
+  PALAVRAS_NEGATIVAS: '["fraco", "ruim", "péssimo"]'
+```
+
