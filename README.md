@@ -24,3 +24,6 @@ Bom trabalho!
 
 ## Adicionar um tweet
 ![Imagem postTweets.png não encontrada](/imagens/postTweets.png)
+
+## Obter análise dos tweets
+![Imagem getAnaliseTweets.png não encontrada](/imagens/getAnaliseTweets.png)
