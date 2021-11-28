@@ -1,0 +1,4 @@
+kafka-topics --bootstrap-server localhost:9092 --list
+kafka-topics --create --topic tweets --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1
+kafka-console-producer --request-required-acks 1 --broker-list localhost:29092 --topic tweets
+kafka-console-consumer --bootstrap-server localhost:29092 --topic tweets --from-beginning --max-messages 100
